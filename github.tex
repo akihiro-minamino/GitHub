@@ -75,14 +75,30 @@ GitHubのwebページの右上の「+」をクリック後、「New repository�
 \item Add .gitignore: プルダウンメニューでこのリポジトリで管理する言語やフレームワーク（Python、C++、Texなど）を選択することで、Gitリポジトリでの管理対象外のファイル・ディレクトリを自動で指定してくれる。
 \item Add a licence: MITライセンス\footnote{MIT Licence: 1. このソフトウェアを誰でも無償で無制限に扱って良い。ただし、著作権表示および本許諾表示をソフトウェアのすべての複製または重要な部分に記載しなければならない。2. 作者または著作権者は、ソフトウェアに関してなんら責任を負わない。}を選ぶ。
 \end{itemize}
+作成したリポジトリのURLは以下である。\\
+\verb|https://github.com/ユーザー名/リポジトリ名|\\
 
-\subsection{}
+\subsection{自分のPCにリポジトリのcloneを作成}
+作成したリポジトリのcloneを自分のPCに持ってくる。\\
+\verb|$ git clone git@github.com:ユーザー名/リポジトリ名|\\
+\verb|$ cd リポジトリ名|\\
+
+\subsection{自分のPCのリポジトリにコードをcommit}
+自分のPCのリポジトリのcloneで、コード（ ここでは、hello\_world.py とする）を作成する。
+この時点では、hello\_world.py はGitリポジトリに登録されていないので、\verb|git status|では、Untracked filesとして表示される。\\
+　\\
+次に、git addコマンドで、hello\_world.py をステージ\footnote{コミットする前のファイル状態を記録したインデックスというデータ構造に記録すること}する。\\
+\verb|git add hello\_world.py|\\
+　\\
+その後、git commitコマンドで、hello\_worldを自分のPCのリポジトリにコミットする。
+\verb|$ git commit -m "コメント"|\\
+
+\subsection{GitHub側のリポジトリを更新}
+git pushで、GitHub側のリポジトリを更新する。\\
+\verb|$ git push|\\
 
 
-
-
-
-
+\section{GitHubの操作}
 
 
 

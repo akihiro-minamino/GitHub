@@ -1,0 +1,85 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex		
+\usepackage{amssymb}
+
+%SetFonts
+
+%SetFonts
+
+
+\title{GitHub}
+\author{Akihiro Minamino}
+%\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+\section{GitHubとは}
+GitHubは、コードを共有するための場所を提供しているGitリポジトリのホスティングサービスである。\\
+
+\section{MacへのGitのインストールと初期設定}
+Homebrewを用いてインストールするのが簡単である。\\
+\verb|$ brew install git|\\
+インストールされてgitのversionは、以下で確認できる。\\
+\verb|$ git --version|\\
+
+
+次にGitで利用する名前とメールアドレスを設定する。\\
+\verb|$ git config --global user.name "Firstname Lastname"|\\
+\verb|$ git config --global user.email "your_email@example.com"|\\
+さらにコマンド出力を読みやすくする。
+\verb|$ git config --global color.ui auto|\\
+上記の内容は、設定ファイル \verb|~/.gitconfig| に書き込まれている。\\
+
+\section{GitHubの利用準備}
+GitHubのアカウント作成ページ \verb|https://github.com/join| でアカウントを作成する。\\
+この時、「Username」には希望するIDを英数字で入力する。
+この「Username」は、公開ページのURLで \verb|https://github.com/Username| として使われる。\\
+
+GitHubでは、作成したリポジトリへのアクセス認証をSSHを利用した公開鍵認証で行う。
+まずは、Macで、以下のようにSSH Keyを作成する。\\
+\verb|ssh -keygen -t rsa -C "your_email@example.com"|\\
+passphraseは「なし」=「何も入力しないでEnter」でよい。\\
+
+
+この結果、\verb|~/.ssh/| に、\verb|id_rsa|という秘密鍵ファイルと、\verb|id_rsa.pub|という公開鍵ファイルが作成される。\\
+
+GitHubのwebページの右上のアカウント設定ボラン(Account Settings)を押し、「SSH Key」のメニューを選択する。
+\begin {itemize}
+\item Titleに適当な鍵の名前（例えば「MacBookAirKey」など）を入力する。
+\item Keyには、\verb|id_rsa.pub|の内容をコピーして貼り付ける。
+\item 公開鍵の登録に成功すると、登録したメールアドレスに公開鍵登録完了のメールが届く。
+\end{itemize}
+動作確認を以下のとおり行う。\\
+\verb|$ ssh -T git@github.com|\\
+「Are you sure you want to continue connecting (yes/no)?」には、yesと入力する。\\
+次のように表示されれば成功。
+\verb|Hi Username! You've successfully authenticated, but GItHub does not provide shell access.|\\
+
+
+\section{GitHubの使い方}
+
+
+
+
+\verb||\\
+
+
+
+
+\verb||
+
+
+
+
+
+
+
+
+
+
+\end{document}  

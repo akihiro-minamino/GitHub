@@ -1,5 +1,17 @@
 \documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
 \usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\usepackage{listings, jlisting}
+\renewcommand{\lstlistingname}{リスト}
+\lstset{
+%language = R,
+%language = C++,   
+breaklines = true,
+numbers = left,
+frame = tbrl,
+tabsize = 4,
+basicstyle =\ttfamily,
+captionpos = t
+}
 \geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
 %\geometry{landscape}                		% Activate for rotated page geometry
 %\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
@@ -22,17 +34,25 @@
 GitHubは、コードを共有するための場所を提供しているGitリポジトリのホスティングサービスである。\\
 
 \section{MacへのGitのインストール}
-Homebrewを用いてインストールするのが簡単である。\\
-\verb|$ brew install git|\\
-インストールされてgitのversionは、以下で確認できる。\\
-\verb|$ git --version|\\
+Homebrewを用いてインストールするのが簡単である。
+\begin{lstlisting}
+$ brew install git
+\end{lstlisting}
+インストールされてgitのversionは、以下で確認できる。
+\begin{lstlisting}
+$ git --version
+\end{lstlisting}
 
 \section{Gitの初期設定}
-次にGitで利用する名前とメールアドレスを設定する。\\
-\verb|$ git config --global user.name "Firstname Lastname"|\\
-\verb|$ git config --global user.email "your_email@example.com"|\\
+次にGitで利用する名前とメールアドレスを設定する。
+\begin{lstlisting}
+$ git config --global user.name "Firstname Lastname"
+$ git config --global user.email "your_email@example.com"
+\end{lstlisting}
 さらにコマンド出力を読みやすくする。
-\verb|$ git config --global color.ui auto|\\
+\begin{lstlisting}
+$ git config --global color.ui auto
+\end{lstlisting}
 上記の内容は、設定ファイル \verb|~/.gitconfig| に書き込まれている。\\
 
 \section{GitHubの利用準備}
@@ -43,8 +63,10 @@ GitHubのアカウント作成ページ \verb|https://github.com/join| でアカ
 
 \subsection{SSH公開鍵の作成}
 GitHubでは、作成したリポジトリへのアクセス認証をSSHを利用した公開鍵認証で行う。
-以下のようにSSH Keyを作成する。\\
-\verb|ssh -keygen -t rsa -C "your_email@example.com"|\\
+以下のようにSSH Keyを作成する。
+\begin{lstlisting}
+ssh -keygen -t rsa -C "your_email@example.com"
+\end{lstlisting}
 （passphraseは「なし」=「何も入力しないでEnter」でよい。）\\
 この結果、\verb|~/.ssh/| に、\verb|id_rsa|という秘密鍵ファイルと、\verb|id_rsa.pub|という公開鍵ファイルが作成される。\\
 
@@ -55,12 +77,16 @@ GitHubのwebページの右上のアカウント設定ボタン(Account Settings
 \item Keyには、\verb|id_rsa.pub|の内容をコピーして貼り付ける。
 \end{itemize}
 公開鍵の登録に成功すると、登録したメールアドレスに公開鍵登録完了のメールが届く。\\ \\
-動作確認を以下のとおり行う。\\ 
-\verb|$ ssh -T git@github.com|\\
+動作確認を以下のとおり行う。
+\begin{lstlisting}
+$ ssh -T git@github.com
+\end{lstlisting}
 （「Are you sure you want to continue connecting (yes/no)?」には、yesと入力する。）\\
-次のように表示されれば成功。\\
-\verb|Hi Username! You've successfully authenticated, |\\
-\verb|but GItHub does not provide shell access.|\\
+次のように表示されれば成功。
+\begin{lstlisting}
+Hi Username! You've successfully authenticated, 
+but GitHub does not provide shell access.
+\end{lstlisting}
 
 
 \section{GitHubの使い方}
@@ -79,23 +105,30 @@ GitHubのwebページの右上の「+」をクリック後、「New repository�
 \verb|https://github.com/ユーザー名/リポジトリ名|\\
 
 \subsection{自分のPCにリポジトリのcloneを作成}
-作成したリポジトリのcloneを自分のPCに持ってくる。\\
-\verb|$ git clone git@github.com:ユーザー名/リポジトリ名|\\
-\verb|$ cd リポジトリ名|\\
+作成したリポジトリのcloneを自分のPCに持ってくる。
+\begin{lstlisting}
+$ git clone git@github.com:ユーザー名/リポジトリ名
+$ cd リポジトリ名
+\end{lstlisting}
 
 \subsection{自分のPCのリポジトリにコードをcommit}
 自分のPCのリポジトリのcloneで、コード（ ここでは、hello\_world.py とする）を作成する。
 この時点では、hello\_world.py はGitリポジトリに登録されていないので、\verb|git status|では、Untracked filesとして表示される。\\
 　\\
-次に、git addコマンドで、hello\_world.py をステージ\footnote{コミットする前のファイル状態を記録したインデックスというデータ構造に記録すること}する。\\
-\verb|git add hello\_world.py|\\
-　\\
+次に、git addコマンドで、hello\_world.py をステージ\footnote{コミットする前のファイル状態を記録したインデックスというデータ構造に記録すること}する。
+\begin{lstlisting}
+git add hello_world.py
+\end{lstlisting}
 その後、git commitコマンドで、hello\_worldを自分のPCのリポジトリにコミットする。
-\verb|$ git commit -m "コメント"|\\
+\begin{lstlisting}
+$ git commit -m "コメント"
+\end{lstlisting}
 
 \subsection{GitHub側のリポジトリを更新}
-git pushで、GitHub側のリポジトリを更新する。\\
-\verb|$ git push|\\
+git pushで、GitHub側のリポジトリを更新する。
+\begin{lstlisting}
+$ git push
+\end{lstlisting}
 
 
 \section{GitHubの操作}
@@ -105,29 +138,41 @@ git pushで、GitHub側のリポジトリを更新する。\\
 その後、ファイルの編集履歴などを.gitディレクトリに登録して管理する。\\
 
 \subsection{git status}
-git statusコマンドは、Gitリポジトリの状態を調べるのに利用する。\\
-\verb|$ git status|\\
+git statusコマンドは、Gitリポジトリの状態を調べるのに利用する。
+\begin{lstlisting}
+$ git status
+\end{lstlisting}
 
 \subsection{git add}
 Gitリポジトリのワークツリーでファイルを作成しただけでは、Gitリポジトリにファイルは登録されない。このようなファイルは、git statusコマンドで、「Untracked files」と表示される。\\
 ファイルをGitリポジトリの管理対象とするには、git addコマンドで、ステージ領域\footnote{ステージ領域はインデックスとも呼ばれる。}にファイルを登録する。
-ステージ領域は、コミットをする前の一時領域のことである。\\
-\verb|$ git add ファイル名|\\
+ステージ領域は、コミットをする前の一時領域のことである。
+\begin{lstlisting}
+$ git add ファイル名
+\end{lstlisting}
 
 \subsection{git commit}
-git commitコマンドは、ステージ領域に登録されている時点のファイルを、リポジトリの歴史として記録するコマンドである。\\
-\verb|$ git commit -m "コメント"|\\
+git commitコマンドは、ステージ領域に登録されている時点のファイルを、リポジトリの歴史として記録するコマンドである。
+\begin{lstlisting}
+$ git commit -m "コメント"
+\end{lstlisting}
 
 \subsection{git log}
 git logコマンドは、リポジトリにコミットされたログを確認するコマンドである。
-誰がいつコミットやマージを行い、どのような差分が発生したかなどを確認できる。\\
-\verb|$ git log|\\
+誰がいつコミットやマージを行い、どのような差分が発生したかなどを確認できる。
+\begin{lstlisting}
+$ git log
+\end{lstlisting}
 
-指定したディレクトリ、ファイルのみログを表示するには、git logコマンドにディレクトリ名もしくはファイル名を与えればよい。\\
-\verb|$ git log ディレクトリ名（ファイル名）|\\
+指定したディレクトリ、ファイルのみログを表示するには、git logコマンドにディレクトリ名もしくはファイル名を与えればよい。
+\begin{lstlisting}
+$ git log ディレクトリ名（ファイル名）
+\end{lstlisting}
 
-各コミットでのファイルの差分を表示したい場合は、git log -pと-pのオプションをつける。\\
-\verb|$ git log -p|\\
+各コミットでのファイルの差分を表示したい場合は、git log -pと-pのオプションをつける。
+\begin{lstlisting}
+$ git log -p
+\end{lstlisting}
 
 \subsection{git diff}
 

@@ -150,6 +150,36 @@ Gitリポジトリのワークツリーでファイルを作成しただけで�
 \begin{lstlisting}
 $ git add ファイル名
 \end{lstlisting}
+また、特定のディレクトリ以下を再帰的に\verb|git add|するには、
+\begin{lstlisting}
+$ git add ディレクトリ名/
+\end{lstlisting}
+とすればよい。\\
+ \\
+ バージョン管理されていて、変更があったすべてのファイルを\verb|git add|するには、
+ \begin{lstlisting}
+$ git add -u
+\end{lstlisting}
+とすればよい。
+バージョン管理の有無に関わらず、変更があったすべてのファイルを\verb|git add|するには、
+ \begin{lstlisting}
+$ git add .
+\end{lstlisting}
+とすればよい。\\
+\verb|git add -u|と\verb|git add .|の違いを表\ref{tab:git_add_u}にまとめる。
+\begin{table}[htb]
+\begin{center}
+\caption{git add -uとgit add .の違い}
+\label{tab:git_add_u}
+  \begin{tabular}{|l|c|c||c|} \hline
+     & New Files & Modified Files & Deleted Files \\ \hline \hline
+    \verb|git add -u| & x & o & o \\ \hline
+    \verb|git add .| & o & o & o \\ \hline
+  \end{tabular}
+\end{center}
+\end{table}
+
+
 
 \subsection{git commit}
 git commitコマンドは、ステージ領域に登録されている時点のファイルを、リポジトリの歴史として記録するコマンドである。
